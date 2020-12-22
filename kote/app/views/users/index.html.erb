@@ -1,0 +1,18 @@
+<h1>管理者画面(ユーザ管理)</h1>
+
+<p><% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %></p>
+
+<% @users.each do |u| %>
+    uid : <%= u.uid %> / 
+    pass : <%= u.pass %> / 
+    age : <%= u.age %>
+    <br>
+<% end %>
+    
+
+<p><%= link_to '管理者画面(ツイート管理)', tweets_path %></p>
+
+<p><%= link_to 'ログイン画面に戻る', top_main_path %></p>
+

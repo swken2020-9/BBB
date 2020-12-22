@@ -1,0 +1,30 @@
+<h1>ツイート一覧(<%= session[:login_uid] %>)</h1>
+
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %>
+
+
+<% @tweets.each do |t| %>
+    <p>
+    投稿者 : <%= User.find_by(id: t.user_id).uid %><br>
+    ツイート : <%= t.message %><br>
+    いいね: <%= Tweet.find(t.id).like_users.count %></p>
+    <% if session[:login_uid] %>
+        <% if Like.find_by(user_id: User.find_by(uid: session[:login_uid]), tweet_id: t.id) %>
+            <%= link_to 'いいね削除', like_path(t), method: :delete %>
+        <% else %>
+            <%= link_to 'いいね', likes_path(tweet_id: t.id), method: :post %>
+        <% end %>
+        
+    <% end %>
+    <br>
+    <p>-------------------------------------</p>
+<% end %>
+    
+<% if session[:login_uid] %>
+<p><%= link_to 'ツイートする', new_tweet_path %></p>
+<% end %>
+
+<p><%= link_to_if session[:login_uid].nil?, 'ログイン', top_main_path do link_to 'ログアウト',top_logout_path end %></p>
+

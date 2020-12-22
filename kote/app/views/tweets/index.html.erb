@@ -1,0 +1,17 @@
+<h1>管理者画面(ツイート管理)</h1>
+
+<p><% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %></p>
+
+<% @tweets.each do |t| %>
+    投稿者 : <%= t.user_id %> /
+    ツイート : <%= t.message %>
+    <br>
+<% end %>
+    
+
+<p><%= link_to '管理者画面(ユーザ管理)', users_path %></p>
+
+<p><%= link_to 'ログイン画面に戻る', top_main_path %></p>
+

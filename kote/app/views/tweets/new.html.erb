@@ -1,0 +1,18 @@
+<h1>ツイート投稿画面</h1>
+
+<%= render "form" %>
+
+<%= form_tag action: :create do %>
+<p><%= label_tag :message, '投稿内容' %><br>
+<%= text_area_tag :message %></p>
+<%= submit_tag '投稿' %>
+<% end %>
+
+<p>
+    <%= link_to '戻る', :back %>
+</p>
+
+
+
+
+
